@@ -8,5 +8,14 @@
 </head>
 <body>
     <h1>Simulação de corridas de táxi</h1>
+    Insira a distância percorrida em KM: <input type="text" id="ipt_distancia"> // Pedindo a distância que o usuário percorreu através do input
+    <br><br> // Espaçando os dois inputs
+    Insira a velocidade média do carro, em KM/h <input type="text" id="ipt_velocidade">  // Pedindo a velocidade média que o carro do usuário percorreu através do input
+    <br> // Espaçando os o input do button 
+    <button onclick="simular">Simular</button> // Botão para executar o script e mostrar uma mensagem ao usuário
+    <div id="div_msg"></div> // div para mostrar a informação processada ao usuário
 </body>
+<script>
+    let combustivel_inicial = 25; // variável global de combustível
+</script>
 </html>
