@@ -1,21 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Controle de Corridas</title>
 </head>
+
 <body>
-    <h1>Simulação de corridas de táxi</h1>
-    Insira a distância percorrida em KM: <input type="text" id="ipt_distancia"> // Pedindo a distância que o usuário percorreu através do input
-    <br><br> // Espaçando os dois inputs
-    Insira a velocidade média do carro, em KM/h <input type="text" id="ipt_velocidade">  // Pedindo a velocidade média que o carro do usuário percorreu através do input
-    <br> // Espaçando os o input do button 
-    <button onclick="simular">Simular</button> // Botão para executar o script e mostrar uma mensagem ao usuário
-    <div id="div_msg"></div> // div para mostrar a informação processada ao usuário
+    <div class="card-pai">
+        <div class="card text">
+            <h1>🚕 Simulação de corridas de táxi</h1>
+            Insira a distância percorrida em KM: <input type="text" id="ipt_distancia">
+            <!-- // Pedindo a distância que o usuário percorreu através do input -->
+            <br><br>
+            <!-- // Espaçando os dois inputs -->
+            Insira a velocidade média do carro, em KM/h <input type="text" id="ipt_velocidade">
+            <!-- // Pedindo a velocidade média que o carro do usuário percorreu através do input -->
+            <br>
+            <!-- // Espaçando os o input do button  -->
+            <button onclick="simular()" class="button-click">Simular</button>
+            <!-- // Botão para executar o script e mostrar uma mensagem ao usuário -->
+        </div>
+        <br>
+        <div id="div_msg" class="text card"></div>
+        <!-- // div para mostrar a informação processada ao usuário -->
+    </div>
 </body>
 <script>
-    let combustivel_inicial = 25; // variável global de combustível
+    let combustivel_atual = 25;
+    // variável global de combustível
+    function simular() {
+        let distancia = Number(ipt_distancia.value);
+        // variavel para receber o input distancia
+        let velocidade = Number(ipt_velocidade.value);
+        // variavel para receber o input velocidade
+        let tempo = distancia / velocidade;
+        // variavel que calcula o tempo, utilizando a fórmula (d/v)
+        let consumo = distancia / 10;
+        // variavel que calculo o consumo de combustível do carro
+        let percentual = (consumo / 25) * 100;
+        // variavel que transforma consumo em percentual
+        combustivel_atual = combustivel_atual - consumo;
+        // combustivel inicial vai subtraindo de avordo com o consumo
+        let combustivel_restante = (combustivel_atual * 100) / 25
+        // calcula o percentual usado de combustivel
+
+        div_msg.innerHTML = `Ao percorrer ${distancia} km, em velocidade média de ${velocidade} km/h, a viagem durou ${tempo} horas.<br><br>Ao todo, foram gastos ${consumo} litros de combustível (${percentual}%). Restam ${combustivel_atual} litros de combustível (${combustivel_restante}%).`
+        // div que mostra ao usuário as informações sobre a viagem
+
+        if (combustivel_restante >= 30) {
+            div_msg.innerHTML += `<br><br>Continue a rodar!`
+        } else {
+            div_msg.innerHTML += `<br><br>É melhor parar para reabastecer!`
+        }
+        // estrutura de decisão que verifica se o combustível está em mais de 30%
+    }
 </script>
+
 </html>
