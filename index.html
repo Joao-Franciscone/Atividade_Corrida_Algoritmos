@@ -9,9 +9,7 @@
 </head>
 
 <body>
-    <div class="card-pai">
-        <div class="card text">
-            <h1>🚕 Simulação de corridas de táxi</h1>
+            <h1>Simulação de corridas de táxi</h1>
             Insira a distância percorrida em KM: <input type="text" id="ipt_distancia">
             <!-- // Pedindo a distância que o usuário percorreu através do input -->
             <br><br>
@@ -20,17 +18,18 @@
             <!-- // Pedindo a velocidade média que o carro do usuário percorreu através do input -->
             <br>
             <!-- // Espaçando os o input do button  -->
-            <button onclick="simular()" class="button-click">Simular</button>
+            <button onclick="simular()">Simular</button>
             <!-- // Botão para executar o script e mostrar uma mensagem ao usuário -->
-        </div>
         <br>
-        <div id="div_msg" class="text card"></div>
+        <div id="div_msg"></div>
         <!-- // div para mostrar a informação processada ao usuário -->
     </div>
 </body>
 <script>
     let combustivel_atual = 25;
     // variável global de combustível
+    let consumo_soma = 0
+    // variavel criada para somar o consumo
     function simular() {
         let distancia = Number(ipt_distancia.value);
         // variavel para receber o input distancia
